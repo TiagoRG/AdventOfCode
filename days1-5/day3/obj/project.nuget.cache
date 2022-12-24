@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SGqlPf0wubHSWwcSZ0jprpsQ9rem/2WmpE08sIupTKB5jkCBb5vuu+Z4+5QFffM+Sg3girwRA18dQk+VytUMyg==",
+  "dgSpecHash": "GxvEt/zas/vqUdpHzZMZPvuL+haK583RnNkxhVCSPdJDli7g7c3qfF2A6o3s8ThqnbQPqZDD01GBDr24H4DZdg==",
   "success": true,
-  "projectFilePath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/Day3.csproj",
+  "projectFilePath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

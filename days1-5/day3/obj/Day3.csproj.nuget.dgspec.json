@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/Day3.csproj": {}
+    "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3.csproj": {}
   },
   "projects": {
-    "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/Day3.csproj": {
+    "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/Day3.csproj",
+        "projectUniqueName": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3.csproj",
         "projectName": "Day3",
-        "projectPath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/Day3.csproj",
+        "projectPath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3.csproj",
         "packagesPath": "/home/tiagorg/.nuget/packages/",
-        "outputPath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/Day3/obj/",
+        "outputPath": "/home/tiagorg/repos/advent-of-code-2022/days1-5/day3/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tiagorg/.nuget/NuGet/NuGet.Config"
