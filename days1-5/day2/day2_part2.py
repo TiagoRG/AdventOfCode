@@ -1,4 +1,4 @@
-with open('inputs/input2.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     # Part 2
     matches = [rpsMatch.split(' ') for rpsMatch in f.read().split('\n')]
     score = 0

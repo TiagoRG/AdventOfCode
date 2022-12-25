@@ -1,5 +1,5 @@
 def main():
-    with open('inputs/input1.txt', 'r') as f:
+    with open('input.txt', 'r') as f:
         # Part 1
         calories = [line for line in f.read().split('\n')]
         caloriesPerDay = [0] * len(calories)

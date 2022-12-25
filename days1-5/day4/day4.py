@@ -1,4 +1,4 @@
-with open('inputs/input4.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     inputContent = f.read().splitlines()
     containedCount = 0
     intersectCount = 0
