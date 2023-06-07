@@ -2,12 +2,11 @@ namespace AdventOfCode.Year2022;
 
 public class Day7
 {
-    private static Dictionary<string, List<string>> tree = new();
+    private static readonly Dictionary<string, List<string>> Tree = GetTree();
     
     public Day7()
     {
         Console.WriteLine("Day7 Solution");
-        LoadTree();
         Console.WriteLine($"Part1 Result: {Part1()}");
         Console.WriteLine($"Part2 Result: {Part2()}");
         Console.WriteLine("\n=============================\n");
@@ -16,7 +15,7 @@ public class Day7
     private static int Part1()
     {
         int sum = 0;
-        foreach (string path in tree.Keys)
+        foreach (string path in Tree.Keys)
         {
             int size = CalculateDirSize(path);
             if (size <= 100000)
@@ -35,7 +34,7 @@ public class Day7
         }
 
         List<int> bigEnoughDir = new List<int>();
-        foreach (string path in tree.Keys)
+        foreach (string path in Tree.Keys)
         {
             int size = CalculateDirSize(path);
             if (size > neededSpace)
@@ -49,7 +48,7 @@ public class Day7
     private static int CalculateDirSize(string path)
     {
         int size = 0;
-        List<string> dirContent = tree[path];
+        List<string> dirContent = Tree[path];
         foreach (string content in dirContent)
         {
             string[] properties = content.Split(" ");
@@ -62,8 +61,9 @@ public class Day7
         return size;
     }
 
-    private static void LoadTree()
+    private static Dictionary<string, List<string>> GetTree()
     {
+        Dictionary<string, List<string>> tree = new Dictionary<string, List<string>>();
         string currentPath = "";
 
         IEnumerable<string> input = File.ReadLines("inputs/day7.txt");
@@ -96,5 +96,7 @@ public class Day7
                 tree[currentPath].Add(line);
             }
         }
+
+        return tree;
     }
 }

@@ -2,12 +2,11 @@ namespace AdventOfCode.Year2022;
 
 public class Day2
 {
-    private static readonly List<string[]> _matches = new();
+    private static readonly List<string[]> Matches = LoadMatches();
 
     public Day2()
     {
         Console.WriteLine("Day2 Solution");
-        LoadMatches();
         Console.WriteLine($"Part1 Result: {Part1()}");
         Console.WriteLine($"Part2 Result: {Part2()}");
         Console.WriteLine("\n=============================\n");
@@ -16,7 +15,7 @@ public class Day2
     private static int Part1()
     {
         int score = 0;
-        foreach (string[] match in _matches)
+        foreach (string[] match in Matches)
         {
             if (match[0] == "A")
             {
@@ -53,7 +52,7 @@ public class Day2
     private static int Part2()
     {
         int score = 0;
-        foreach (string[] match in _matches)
+        foreach (string[] match in Matches)
         {
             if (match[0] == "A")
             {
@@ -87,9 +86,11 @@ public class Day2
         return score;
     }
 
-    private static void LoadMatches()
+    private static List<string[]> LoadMatches()
     {
+        List<string[]> matches = new List<string[]>();
         foreach (string line in File.ReadAllLines("inputs/day2.txt"))
-            _matches.Add(line.Split(" "));
+            matches.Add(line.Split(" "));
+        return matches;
     }
 }

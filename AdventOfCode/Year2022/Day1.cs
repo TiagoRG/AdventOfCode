@@ -2,12 +2,11 @@ namespace AdventOfCode.Year2022;
 
 public class Day1
 {
-    private static List<int> _caloriesPerElf = new();
+    private static readonly List<int> CaloriesPerElf = GetCaloriesPerElf();
     
     public Day1()
     {
         Console.WriteLine("\nDay1 Solution");
-        LoadCaloriesPerElf();
         Console.WriteLine($"Part1 Result: {Part1()}");
         Console.WriteLine($"Part2 Result: {Part2()}");
         Console.WriteLine("\n=============================\n");
@@ -15,7 +14,7 @@ public class Day1
 
     private static int Part1()
     {
-        return _caloriesPerElf.Max();
+        return CaloriesPerElf.Max();
     }
 
     private static int Part2()
@@ -23,14 +22,14 @@ public class Day1
         List<int> top3 = new List<int>();
         for (int i = 0; i < 3; i++)
         {
-            top3.Add(_caloriesPerElf.Max());
-            _caloriesPerElf.Remove(_caloriesPerElf.Max());
+            top3.Add(CaloriesPerElf.Max());
+            CaloriesPerElf.Remove(CaloriesPerElf.Max());
         }
 
         return top3.Sum();
     }
 
-    private static void LoadCaloriesPerElf()
+    private static List<int> GetCaloriesPerElf()
     {
         string[] calories = File.ReadAllLines("inputs/day1.txt");
         int[] caloriesPerDay = new int[calories.Length];
@@ -44,6 +43,6 @@ public class Day1
         }
 
         int elfCount = caloriesPerDay.ToList().IndexOf(0);
-        _caloriesPerElf = caloriesPerDay.ToList().GetRange(0, elfCount);
+        return caloriesPerDay.ToList().GetRange(0, elfCount);
     }
 }

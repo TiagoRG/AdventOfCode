@@ -2,7 +2,7 @@ namespace AdventOfCode.Year2022;
 
 public class Day3
 {
-    private static readonly string[] backpacks = File.ReadAllLines("inputs/day3.txt");
+    private static readonly string[] Backpacks = File.ReadAllLines("inputs/day3.txt");
     
     public Day3()
     {
@@ -18,7 +18,7 @@ public class Day3
         
         List<char> duplicates = new List<char>();
         
-        foreach (string backpack in backpacks)
+        foreach (string backpack in Backpacks)
         {
             int compartmentSize = backpack.Length / 2;
             List<char> itemsInCompartment1 = new List<char>();
@@ -49,7 +49,7 @@ public class Day3
         int sum = 0;
         List<List<string>> groups = new List<List<string>>();
 
-        for (int i = 0; i < backpacks.Length; i+=3)
+        for (int i = 0; i < Backpacks.Length; i+=3)
         {
             List<string> group = new List<string>();
 
@@ -57,7 +57,7 @@ public class Day3
             {
                 try
                 {
-                    group.Add(backpacks[i + x]);
+                    group.Add(Backpacks[i + x]);
                 }
                 catch
                 {

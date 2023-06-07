@@ -22,21 +22,21 @@ public class Day4
         Console.WriteLine("\n=============================\n");
     }
 
-    public static bool IsContained(string line)
+    private static bool IsContained(string line)
     {
         int[][] limits = GetLimits(line);
         return (limits[0][0] >= limits[1][0] && limits[0][1] <= limits[1][1])
             || (limits[1][0] >= limits[0][0] && limits[1][1] <= limits[0][1]);
     }
-    
-    public static bool IsIntersected(string line)
+
+    private static bool IsIntersected(string line)
     {
         int[][] limits = GetLimits(line);
         return (limits[0][1] >= limits[1][0] && limits[0][0] <= limits[1][1])
                || (limits[1][1] >= limits[0][0] && limits[1][0] <= limits[0][1]);
     }
 
-    public static int[][] GetLimits(string line)
+    private static int[][] GetLimits(string line)
     {
         string[] pair = line.Split(",");
         string[] pair1 = pair[0].Split("-");

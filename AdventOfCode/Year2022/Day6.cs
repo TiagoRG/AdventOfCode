@@ -2,7 +2,7 @@ namespace AdventOfCode.Year2022;
 
 public class Day6
 {
-    private static readonly string _input = File.ReadAllText("inputs/day6.txt");
+    private static readonly string Input = File.ReadAllText("inputs/day6.txt");
     
     public Day6()
     {
@@ -14,8 +14,8 @@ public class Day6
 
     private static int? GetValidMarkerIndex(int size)
     {
-        for (int i = 0; i < _input.Length-size; i++)
-            if (ValidateMarker(_input.Substring(i, size)))
+        for (int i = 0; i < Input.Length-size; i++)
+            if (ValidateMarker(Input.Substring(i, size)))
                 return i + size;
         return null;
     }
