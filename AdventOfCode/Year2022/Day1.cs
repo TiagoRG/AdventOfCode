@@ -6,11 +6,11 @@ public class Day1
     
     public Day1()
     {
-        Console.WriteLine("\nDay1 Solution\n");
+        Console.WriteLine("\nDay1 Solution");
         LoadCaloriesPerElf();
-        Console.WriteLine($"Part1\nResult: {Part1()}\n");
-        Console.WriteLine($"Part2\nResult: {Part2()}\n");
-        Console.WriteLine("=============================\n");
+        Console.WriteLine($"Part1 Result: {Part1()}");
+        Console.WriteLine($"Part2 Result: {Part2()}");
+        Console.WriteLine("\n=============================\n");
     }
 
     private static int Part1()

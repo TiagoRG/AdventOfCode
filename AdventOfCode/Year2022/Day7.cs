@@ -6,11 +6,11 @@ public class Day7
     
     public Day7()
     {
-        Console.WriteLine("Day7 Solution\n");
+        Console.WriteLine("Day7 Solution");
         LoadTree();
-        Console.WriteLine($"Part1\nResult: {Part1()}\n");
-        Console.WriteLine($"Part2\nResult: {Part2()}\n");
-        Console.WriteLine("=============================\n");
+        Console.WriteLine($"Part1 Result: {Part1()}");
+        Console.WriteLine($"Part2 Result: {Part2()}");
+        Console.WriteLine("\n=============================\n");
     }
 
     private static int Part1()

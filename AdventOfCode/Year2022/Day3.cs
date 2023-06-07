@@ -6,10 +6,10 @@ public class Day3
     
     public Day3()
     {
-        Console.WriteLine("Day3 Solution\n");
-        Console.WriteLine($"Part1\nResult: {Part1()}\n");
-        Console.WriteLine($"Part2\nResult: {Part2()}\n");
-        Console.WriteLine("=============================\n");
+        Console.WriteLine("Day3 Solution");
+        Console.WriteLine($"Part1 Result: {Part1()}");
+        Console.WriteLine($"Part2 Result: {Part2()}");
+        Console.WriteLine("\n=============================\n");
     }
 
     private static int Part1()

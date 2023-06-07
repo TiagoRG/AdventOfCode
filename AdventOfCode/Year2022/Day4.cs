@@ -4,7 +4,7 @@ public class Day4
 {
     public Day4()
     {
-        Console.WriteLine("Day4 Solution\n");
+        Console.WriteLine("Day4 Solution");
 
         string[] lines = File.ReadAllLines("inputs/day4.txt");
         int containedCount = 0;
@@ -17,9 +17,9 @@ public class Day4
                 intersectedCount++;
         }
         
-        Console.WriteLine($"Part1\nResult: {containedCount}\n");
-        Console.WriteLine($"Part2\nResult: {intersectedCount}\n");
-        Console.WriteLine("=============================\n");
+        Console.WriteLine($"Part1 Result: {containedCount}");
+        Console.WriteLine($"Part2 Result: {intersectedCount}");
+        Console.WriteLine("\n=============================\n");
     }
 
     public static bool IsContained(string line)
