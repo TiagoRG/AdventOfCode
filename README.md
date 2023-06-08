@@ -11,3 +11,4 @@
 * [Day 4](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day4.cs)
 * [Day 6](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day6.cs)
 * [Day 7](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day7.cs)
+* [Day 8](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day8.cs)
