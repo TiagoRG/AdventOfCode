@@ -19,15 +19,12 @@ public class Day8
         int count = 0;
         for (int i = 0; i < TreeMap.Count; i++)
             for (int j = 0; j < TreeMap[i].Count; j++)
-            {
                 if (i == 0 || i == TreeMap.Count-1 || j == 0 || j == TreeMap.Count-1 
                     || TreeMap[i].Sublist(0, j).Max() < TreeMap[i][j] 
                     || TreeMap[i].Sublist(j + 1, TreeMap[i].Count).DefaultIfEmpty().Max() < TreeMap[i][j]
                     || TreeMap.GetColumn(j).Sublist(0, i).Max() < TreeMap[i][j] 
                     || TreeMap.GetColumn(j).Sublist(i + 1, TreeMap[i].Count).DefaultIfEmpty().Max() < TreeMap[i][j])
                     count++;
-            }
-
         return count;
     }
 

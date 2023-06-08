@@ -29,4 +29,51 @@ public static class Extensions
         foreach (List<T> row in list) result.AddRange(row.Where((t, i) => i == column));
         return result;
     }
+
+    /// <summary>
+    /// Reverses a given list
+    /// </summary>
+    /// <param name="list">The list to reverse</param>
+    /// <returns>The reversed list</returns>
+    public static List<T> Reversed<T>(this List<T> list)
+    {
+        List<T> reversed = new List<T>();
+        for (int i = 0; i < list.Count; i++)
+            reversed.Add(list[list.Count-1-i]);
+        return reversed;
+    }
+
+    /// <summary>
+    /// Clones a list of elements
+    /// </summary>
+    /// <param name="original">The original list</param>
+    /// <returns>A copy of the original list</returns>
+    public static List<T> Clone<T>(this List<T> original)
+    {
+        List<T> ret = new List<T>(original.Count);
+        foreach (T element in original)
+            ret.Add(element);
+        return ret;
+    }
+
+    public static Dictionary<TKey, TValue> Clone<TKey, TValue>
+        (this Dictionary<TKey, TValue> original)
+        where TValue : ICloneable
+        where TKey : notnull
+    {
+        Dictionary<TKey, TValue> ret = new Dictionary<TKey, TValue>(original.Count, original.Comparer);
+        foreach (KeyValuePair<TKey, TValue> entry in original)
+            ret.Add(entry.Key, (TValue) entry.Value.Clone());
+        return ret;
+    }
+    
+    public static Dictionary<TKey, List<TValue>> Clone<TKey, TValue>
+        (this Dictionary<TKey, List<TValue>> original)
+        where TKey : notnull
+    {
+        Dictionary<TKey, List<TValue>> ret = new Dictionary<TKey, List<TValue>>(original.Count, original.Comparer);
+        foreach (KeyValuePair<TKey, List<TValue>> entry in original)
+            ret.Add(entry.Key, entry.Value.Clone());
+        return ret;
+    }
 }
