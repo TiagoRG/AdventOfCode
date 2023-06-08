@@ -1,87 +1,99 @@
+using AdventOfCode.Utils;
+
 namespace AdventOfCode.Year2022;
 
 public class Day9
 {
-    private static readonly List<(char, int)> Moves = new();
-    private static readonly Dictionary<char, List<int>> Position = new()
-    {
-        ['H'] = new List<int>(),
-        ['T'] = new List<int>()
-    };
-    
     public Day9()
     {
         Console.WriteLine("Day9 Solution");
+        List<(char, int)> moves = new List<(char, int)>();
         File.ReadAllLines("inputs/day9.txt").ToList().ForEach(line =>
         {
             string[] split = line.Split(" ");
-            Moves.Add((Convert.ToChar(split[0]), Convert.ToInt32(split[1])));
+            moves.Add((Convert.ToChar(split[0]), Convert.ToInt32(split[1])));
         });
-        Console.WriteLine($"Part1 Result: {Part1()}");
-        Console.WriteLine($"Part2 Result: {Part2()}");
+        Console.WriteLine($"Part1 Result: {GetPositionCount(moves, 2)}");
+        Console.WriteLine($"Part2 Result: {GetPositionCount(moves, 10)}");
         Console.WriteLine("\n=============================\n");
     }
 
-    private static int Part1()
+    private static int GetPositionCount(List<(char, int)> moves, int knots)
     {
-        Position['H'] = new[] {0, 0}.ToList();
-        Position['T'] = new[] {0, 0}.ToList();
-        HashSet<(int, int)> usedPositions = new HashSet<(int, int)>();
+        List<List<int>> currentPositions = new List<List<int>>();
+        currentPositions.Fill(knots, new List<int>(new[]{0,0}));
+        HashSet<(int, int)> tailHistory = new HashSet<(int, int)>();
 
-        foreach ((char, int) move in Moves)
-        {
-            List<int> head = Position['H'];
-            List<int> tail = Position['T'];
-            for (int i = 0; i < move.Item2; i++)
+        foreach ((char, int) move in moves)
+            for (int moveN = 0; moveN < move.Item2; moveN++)
             {
-                if (move.Item1 == 'U')
+                int[] vector = GetVector(move.Item1);
+                int[] previousTailPosition = currentPositions[0].ToArray(); 
+                currentPositions[0] = UpdateHead(vector, currentPositions[0]);
+                for (int tailN = 0; tailN < knots-1; tailN++)
                 {
-                    head[1]++;
-                    if (ValidatePosition()) continue;
-                    tail[1]++;
-                    tail[0] += head[0] - tail[0];
+                    int[] nextPreviousTailPosition = currentPositions[tailN + 1].ToArray();
+                    currentPositions[tailN + 1] = UpdateTail(currentPositions[tailN], currentPositions[tailN + 1], previousTailPosition);
+                    previousTailPosition = nextPreviousTailPosition;
+                    if (tailN == knots - 2)
+                        tailHistory.Add((currentPositions[knots - 1][0], currentPositions[knots - 1][1]));
                 }
-                else if (move.Item1 == 'D')
-                {
-                    head[1]--;
-                    if (ValidatePosition()) continue;
-                    tail[1]--;
-                    tail[0] += head[0] - tail[0];
-                }
-                else if (move.Item1 == 'R')
-                {
-                    head[0]++;
-                    if (ValidatePosition()) continue;
-                    tail[0]++;
-                    tail[1] += head[1] - tail[1];
-                }
-                else if (move.Item1 == 'L')
-                {
-                    head[0]--;
-                    if (ValidatePosition()) continue;
-                    tail[0]--;
-                    tail[1] += head[1] - tail[1];
-                }
-                usedPositions.Add((tail[0], tail[1]));
             }
-        }
-        return usedPositions.Count;
+
+        return tailHistory.Count;
     }
 
-    private static int Part2()
+    private static List<int> UpdateHead(int[] vector, List<int> currentPosition)
     {
-        Position['H'] = new[] {0, 0}.ToList();
-        Position['T'] = new[] {0, 0}.ToList();
-        HashSet<(int, int)> usedPositions = new HashSet<(int, int)>();
-
-        foreach ((char, int) move in Moves)
-        {
-            
-        }
-        
-        return usedPositions.Count;
+        currentPosition[0] += vector[0];
+        currentPosition[1] += vector[1];
+        return new List<int> { currentPosition[0], currentPosition[1] };
     }
 
-    private static bool ValidatePosition()
-        => Position['H'][0] - Position['T'][0] is > -2 and < 2 && Position['H'][1] - Position['T'][1] is > -2 and < 2;
+    private static List<int> UpdateTail(List<int> currentHeadPosition, List<int> currentTailPosition, int[] previousTailPosition)
+    {
+        List<int> head = new List<int>
+        {
+            currentHeadPosition[0] - previousTailPosition[0],
+            currentHeadPosition[1] - previousTailPosition[1]
+        };
+
+        if (Math.Abs(currentHeadPosition[0] - currentTailPosition[0]) > 1 ||
+            Math.Abs(currentHeadPosition[1] - currentTailPosition[1]) > 1)
+        {
+            if (previousTailPosition[0] == currentTailPosition[0] ||
+                previousTailPosition[1] == currentTailPosition[1])
+                return new List<int>
+                {
+                    currentTailPosition[0] + head[0],
+                    currentTailPosition[1] + head[1]
+                };
+            
+            List<int> difference = new List<int>
+            {
+                currentHeadPosition[0] - currentTailPosition[0],
+                currentHeadPosition[1] - currentTailPosition[1]
+            };
+
+            return new List<int>
+            {
+                currentTailPosition[0] + difference[0].Signal() * Math.Min(Math.Abs(difference[0]), 1),
+                currentTailPosition[1] + difference[1].Signal() * Math.Min(Math.Abs(difference[1]), 1)
+            };
+        }
+
+        return currentTailPosition;
+    }
+
+    private static int[] GetVector(char direction)
+    {
+        return direction switch
+        {
+            'U' => new[] { 1, 0 },
+            'D' => new[] { -1, 0 },
+            'R' => new[] { 0, 1 },
+            'L' => new[] { 0, -1 },
+            _ => new[] { 0, 0 }
+        };
+    }
 }

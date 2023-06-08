@@ -2,6 +2,16 @@ namespace AdventOfCode.Utils;
 
 public static class Extensions
 {
+    public static int Signal(this int x)
+    {
+        return x switch
+        {
+            < 0 => -1,
+            > 0 => 1,
+            _ => 0
+        };
+    }
+    
     /// <summary>
     /// Returns a slice of the given list
     /// </summary>
@@ -75,5 +85,25 @@ public static class Extensions
         foreach (KeyValuePair<TKey, List<TValue>> entry in original)
             ret.Add(entry.Key, entry.Value.Clone());
         return ret;
+    }
+
+    public static void Fill<T>(this List<T> list, int count, T element)
+        where T : ICloneable 
+    {
+        for (int i = 0; i < count; i++)
+            list.Add(element);
+    }
+
+    public static void Fill<T>(this List<List<T>> list, int count, List<T> element)
+    {
+        for (int i = 0; i < count; i++)
+            list.Add(element.Clone());
+    }
+
+    public static void Set<T>(this List<T> list, int index, T element)
+    {
+        List<T> backup = list.Clone();
+        list.Clear();
+        for (int i = 0; i < list.Count; i++) list.Add(i == index ? element : list[i]);
     }
 }
