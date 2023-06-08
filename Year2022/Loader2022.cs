@@ -1,10 +1,8 @@
-﻿using AdventOfCode.Year2022;
+namespace AdventOfCode.Year2022;
 
-namespace AdventOfCode;
-
-class Program
+public static class Loader2022
 {
-    public static void Main(string[] args)
+    public static void Load()
     {
         new Day1();
         new Day2();
@@ -12,5 +10,6 @@ class Program
         new Day4();
         new Day6();
         new Day7();
+        new Day8();
     }
 }
