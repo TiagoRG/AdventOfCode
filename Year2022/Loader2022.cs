@@ -13,5 +13,6 @@ public static class Loader2022
         new Day7();
         // new Day8();  -- Commented because it's a slow solution
         new Day9();
+        new Day10();
     }
 }
