@@ -1,4 +1,4 @@
-namespace AdventOfCode.Utils;
+namespace AdventOfCode.Utils.Extensions;
 
 public static class LinqExtensions
 {
@@ -9,9 +9,11 @@ public static class LinqExtensions
     /// <param name="startIndex">The first index of the slice</param>
     /// <param name="endIndex">The index after the last index of the slice</param>
     /// <returns></returns>
-    public static List<T> Sublist<T>(this List<T> list, int startIndex, int endIndex)
+    public static List<T> Sublist<T>(this List<T> list, int startIndex, int endIndex = default)
     {
         List<T> result = new List<T>();
+        if (endIndex == default)
+            endIndex = list.Count;
         for (int i = startIndex; i < endIndex; i++)
             result.Add(list[i]);
         return result;

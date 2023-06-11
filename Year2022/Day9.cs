@@ -1,4 +1,4 @@
-using AdventOfCode.Utils;
+using AdventOfCode.Utils.Extensions;
 
 namespace AdventOfCode.Year2022;
 
