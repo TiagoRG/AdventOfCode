@@ -9,7 +9,7 @@ public static class Loader2022
          * Solutions in C# for the 2022 Advent of Code
          * Slower solutions are commented
          */
-        
+
         new Day1();
         new Day2();
         new Day3();
@@ -21,5 +21,6 @@ public static class Loader2022
         new Day9();
         new Day10();
         // new Day11();
+        // new Day12();
     }
 }

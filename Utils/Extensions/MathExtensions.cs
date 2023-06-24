@@ -18,7 +18,7 @@ public static class MathExtensions
         {
             Convert.ToInt32(s);
         }
-        catch (FormatException ignored)
+        catch (FormatException)
         {
             return false;
         }
@@ -28,30 +28,32 @@ public static class MathExtensions
 
     public static ulong ProductOfMax(this List<ulong> list, int maxCount)
     {
-        List<ulong> maxList = new List<ulong>(maxCount);
+        var maxList = new List<ulong>(maxCount);
 
-        foreach (ulong number in list)
+        foreach (var number in list)
         {
             if (maxList.Count < maxList.Capacity)
+            {
                 maxList.Add(number);
-            else
-            if (number > maxList.Min())
+            }
+            else if (number > maxList.Min())
             {
                 maxList.RemoveAt(0);
                 maxList.Add(number);
             }
+
             maxList.Sort();
         }
 
         ulong product = 1;
-        maxList.ForEach(n => product*=n);
+        maxList.ForEach(n => product *= n);
         return product;
     }
 
     public static int LeastCommonMultiplier(this List<int> list)
     {
-        int lcm = 1;
-        foreach (int i in list)
+        var lcm = 1;
+        foreach (var i in list)
             lcm *= i / MathTools.GreatCommonDivider(lcm, i);
         return lcm;
     }

@@ -6,34 +6,37 @@ public class Day9
 {
     public Day9()
     {
-        Console.WriteLine("Day9 Solution");
-        List<(char, int)> moves = new List<(char, int)>();
+        var moves = new List<(char, int)>();
         File.ReadAllLines("inputs/day9.txt").ToList().ForEach(line =>
         {
-            string[] split = line.Split(" ");
+            var split = line.Split(" ");
             moves.Add((Convert.ToChar(split[0]), Convert.ToInt32(split[1])));
         });
-        Console.WriteLine($"Part1 Result: {GetPositionCount(moves, 2)}");
-        Console.WriteLine($"Part2 Result: {GetPositionCount(moves, 10)}");
-        Console.WriteLine("\n=============================\n");
+        Console.WriteLine($@"
+Day9 Solution
+Part1 Result: {GetPositionCount(moves, 2)}
+Part2 Result: {GetPositionCount(moves, 10)}
+
+=============================");
     }
 
     private static int GetPositionCount(List<(char, int)> moves, int knots)
     {
-        List<List<int>> currentPositions = new List<List<int>>();
-        currentPositions.Fill(knots, new List<int>(new[]{0,0}));
-        HashSet<(int, int)> tailHistory = new HashSet<(int, int)>();
+        var currentPositions = new List<List<int>>();
+        currentPositions.Fill(knots, new List<int>(new[] { 0, 0 }));
+        var tailHistory = new HashSet<(int, int)>();
 
-        foreach ((char, int) move in moves)
-            for (int moveN = 0; moveN < move.Item2; moveN++)
+        foreach (var move in moves)
+            for (var moveN = 0; moveN < move.Item2; moveN++)
             {
-                int[] vector = GetVector(move.Item1);
-                int[] previousTailPosition = currentPositions[0].ToArray(); 
+                var vector = GetVector(move.Item1);
+                var previousTailPosition = currentPositions[0].ToArray();
                 currentPositions[0] = UpdateHead(vector, currentPositions[0]);
-                for (int tailN = 0; tailN < knots-1; tailN++)
+                for (var tailN = 0; tailN < knots - 1; tailN++)
                 {
-                    int[] nextPreviousTailPosition = currentPositions[tailN + 1].ToArray();
-                    currentPositions[tailN + 1] = UpdateTail(currentPositions[tailN], currentPositions[tailN + 1], previousTailPosition);
+                    var nextPreviousTailPosition = currentPositions[tailN + 1].ToArray();
+                    currentPositions[tailN + 1] = UpdateTail(currentPositions[tailN], currentPositions[tailN + 1],
+                        previousTailPosition);
                     previousTailPosition = nextPreviousTailPosition;
                     if (tailN == knots - 2)
                         tailHistory.Add((currentPositions[knots - 1][0], currentPositions[knots - 1][1]));
@@ -50,9 +53,10 @@ public class Day9
         return new List<int> { currentPosition[0], currentPosition[1] };
     }
 
-    private static List<int> UpdateTail(List<int> currentHeadPosition, List<int> currentTailPosition, int[] previousTailPosition)
+    private static List<int> UpdateTail(List<int> currentHeadPosition, List<int> currentTailPosition,
+        int[] previousTailPosition)
     {
-        List<int> head = new List<int>
+        var head = new List<int>
         {
             currentHeadPosition[0] - previousTailPosition[0],
             currentHeadPosition[1] - previousTailPosition[1]
@@ -68,8 +72,8 @@ public class Day9
                     currentTailPosition[0] + head[0],
                     currentTailPosition[1] + head[1]
                 };
-            
-            List<int> difference = new List<int>
+
+            var difference = new List<int>
             {
                 currentHeadPosition[0] - currentTailPosition[0],
                 currentHeadPosition[1] - currentTailPosition[1]

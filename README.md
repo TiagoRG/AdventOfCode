@@ -1,10 +1,13 @@
 # Advent of Code
+
 ## Solutions for the AoC Challenges, all in C#
+
 ### They might not be the best solutions but they work and that's the important part of a coders job :xdd:
 
 ## Solutions organized by year, 1 file per day.
 
 ### [2022](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022)
+
 * [Day 1](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day1.cs)
 * [Day 2](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day2.cs)
 * [Day 3](https://github.com/TiagoRG/AdventOfCode/tree/main/AdventOfCode/Year2022/Day3.cs)

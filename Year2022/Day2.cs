@@ -6,16 +6,18 @@ public class Day2
 
     public Day2()
     {
-        Console.WriteLine("Day2 Solution");
-        Console.WriteLine($"Part1 Result: {Part1()}");
-        Console.WriteLine($"Part2 Result: {Part2()}");
-        Console.WriteLine("\n=============================\n");
+        Console.WriteLine($@"
+Day2 Solution
+Part1 Result: {Part1()}
+Part2 Result: {Part2()}
+
+=============================");
     }
 
     private static int Part1()
     {
-        int score = 0;
-        foreach (string[] match in Matches)
+        var score = 0;
+        foreach (var match in Matches)
         {
             if (match[0] == "A")
             {
@@ -26,6 +28,7 @@ public class Day2
                 if (match[1] == "Z")
                     score += 3;
             }
+
             if (match[0] == "B")
             {
                 if (match[1] == "X")
@@ -35,6 +38,7 @@ public class Day2
                 if (match[1] == "Z")
                     score += 3 + 6;
             }
+
             if (match[0] == "C")
             {
                 if (match[1] == "X")
@@ -51,8 +55,8 @@ public class Day2
 
     private static int Part2()
     {
-        int score = 0;
-        foreach (string[] match in Matches)
+        var score = 0;
+        foreach (var match in Matches)
         {
             if (match[0] == "A")
             {
@@ -63,6 +67,7 @@ public class Day2
                 if (match[1] == "Z")
                     score += 2 + 6;
             }
+
             if (match[0] == "B")
             {
                 if (match[1] == "X")
@@ -72,6 +77,7 @@ public class Day2
                 if (match[1] == "Z")
                     score += 3 + 6;
             }
+
             if (match[0] == "C")
             {
                 if (match[1] == "X")
@@ -88,8 +94,8 @@ public class Day2
 
     private static List<string[]> LoadMatches()
     {
-        List<string[]> matches = new List<string[]>();
-        foreach (string line in File.ReadAllLines("inputs/day2.txt"))
+        var matches = new List<string[]>();
+        foreach (var line in File.ReadAllLines("inputs/day2.txt"))
             matches.Add(line.Split(" "));
         return matches;
     }
