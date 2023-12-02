@@ -4,8 +4,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# Rider configuration directory
-.idea/
+# AdventOfCode input files
+inputs/
 
 # User-specific files
 *.rsuser
