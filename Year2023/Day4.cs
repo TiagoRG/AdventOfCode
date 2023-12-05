@@ -7,8 +7,6 @@ public static class Day4
     private class Card
     {
         public int CardNumber { get; set; }
-        public int[]? WinningNumbers { get; set; }
-        public int[]? Numbers { get; set; }
         public int ValidNumbers { get; set; }
     }
 
@@ -22,15 +20,11 @@ public static class Day4
             Card card = new Card();
             card.CardNumber = Convert.ToInt32(Regex.Split(line.Split(": ")[0], @"\s+").Last());
             string[] cardNumbers = Regex.Split(line.Split(": ")[1], @"\s+\|\s+");
-            card.WinningNumbers = Regex.Split(cardNumbers.First(), @"\W+").Where(x => !string.IsNullOrEmpty(x)).Select(x => Convert.ToInt32(x)).ToArray();
-            card.Numbers = Regex.Split(cardNumbers.Last(), @"\W+").Where(x => !string.IsNullOrEmpty(x)).Select(x => Convert.ToInt32(x)).ToArray();
-            Cards.Add(card);
-        });
-
-        Cards.ForEach(card =>
-        {
+            int[] winningNumbers = Regex.Split(cardNumbers.First(), @"\W+").Where(x => !string.IsNullOrEmpty(x)).Select(x => Convert.ToInt32(x)).ToArray();
+            int[] numbers = Regex.Split(cardNumbers.Last(), @"\W+").Where(x => !string.IsNullOrEmpty(x)).Select(x => Convert.ToInt32(x)).ToArray();
             card.ValidNumbers = 0;
-            card.Numbers!.ToList().ForEach(number => card.ValidNumbers += card.WinningNumbers!.Contains(number) ? 1 : 0);
+            numbers.ToList().ForEach(number => card.ValidNumbers += winningNumbers.Contains(number) ? 1 : 0);
+            Cards.Add(card);
         });
 
         Console.WriteLine($@"
