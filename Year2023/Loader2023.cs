@@ -13,6 +13,7 @@ public static class Loader2023
         Day1.Run();
         Day2.Run();
         Day4.Run();
+        Day5.Run();
     }
 }
 
